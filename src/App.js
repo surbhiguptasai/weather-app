@@ -5,7 +5,8 @@ import Form from './form'
 // import SForm from "./components/stateless_form"
 import Titles from './titles'
 
-const Api_Key = '71feced97c91682dea2ca11098879c01'
+
+const Api_Key1 = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 class App extends React.Component {
   state = {
@@ -23,7 +24,7 @@ class App extends React.Component {
     const country = e.target.elements.country.value
     e.preventDefault()
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_Key}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_Key1}`
     )
     const response = await api_call.json()
     console.log(response)
@@ -44,6 +45,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log("Api_Key1 is ***************"+Api_Key1)
+ 
     return (
       <div>
         <div className="wrapper">
