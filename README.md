@@ -1,5 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Weather Application
+Find the current weather and 5 day forecast of any city on earth with this simple little web app
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Simple React web application written with jsx that returns the current weather. The app utilizes:
 
+OpenWeatherMap's API.
+Webpack for bundling
+React Router
+Axios for easy http requests
+Express for a simple server to run our application
