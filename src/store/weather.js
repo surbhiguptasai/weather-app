@@ -210,30 +210,30 @@ export const fetchWeather = (latitude, longitude, day) =>
         console.log("got results"+JSON.stringify(res.data))
         weather.forecast.day1.min=res.data.list[0].main.temp_min;
         weather.forecast.day1.max=res.data.list[0].main.temp_max;
-        weather.forecast.day1.day=res.data.list[0].dt;
+        weather.forecast.day1.day=res.data.list[0].main.temp;
         weather.forecast.day1.id=res.data.list[0].weather[0].id;
 
         weather.forecast.day2.min=res.data.list[8].main.temp_min;
         weather.forecast.day2.max=res.data.list[8].main.temp_max;
-        weather.forecast.day2.day=res.data.list[8].dt;
+        weather.forecast.day2.day=res.data.list[8].main.temp;
         weather.forecast.day2.id=res.data.list[8].weather[0].id;
 
         weather.forecast.day3.min=res.data.list[16].main.temp_min;
         weather.forecast.day3.max=res.data.list[16].main.temp_max;
-        weather.forecast.day3.day=res.data.list[16].dt;
+        weather.forecast.day3.day=res.data.list[16].main.temp;
         weather.forecast.day3.id=res.data.list[16].weather[0].id;
 
 
 
         weather.forecast.day4.min=res.data.list[24].main.temp_min;
         weather.forecast.day4.max=res.data.list[24].main.temp_max;
-        weather.forecast.day4.day=res.data.list[24].dt;
+        weather.forecast.day4.day=res.data.list[24].main.temp;
         weather.forecast.day4.id=res.data.list[24].weather[0].id;
 
 
         weather.forecast.day5.min=res.data.list[32].main.temp_min;
         weather.forecast.day5.max=res.data.list[32].main.temp_max;
-        weather.forecast.day5.day=res.data.list[32].dt;
+        weather.forecast.day5.day=res.data.list[32].main.temp;
         weather.forecast.day5.id=res.data.list[32].weather[0].id;
         
         
@@ -249,30 +249,30 @@ export const fetchWeather = (latitude, longitude, day) =>
           console.log("got results"+JSON.stringify(res.data))
           weather.forecast.day1.min=res.data.list[0].main.temp_min;
           weather.forecast.day1.max=res.data.list[0].main.temp_max;
-          weather.forecast.day1.day=res.data.list[0].dt;
+          weather.forecast.day1.day=res.data.list[0].main.temp;
           weather.forecast.day1.id=res.data.list[0].weather[0].id;
   
           weather.forecast.day2.min=res.data.list[8].main.temp_min;
           weather.forecast.day2.max=res.data.list[8].main.temp_max;
-          weather.forecast.day2.day=res.data.list[8].dt;
+          weather.forecast.day2.day=res.data.list[8].main.temp;
           weather.forecast.day2.id=res.data.list[8].weather[0].id;
   
           weather.forecast.day3.min=res.data.list[16].main.temp_min;
           weather.forecast.day3.max=res.data.list[16].main.temp_max;
-          weather.forecast.day3.day=res.data.list[16].dt;
+          weather.forecast.day3.day=res.data.list[16].main.temp;
           weather.forecast.day3.id=res.data.list[16].weather[0].id;
   
   
   
           weather.forecast.day4.min=res.data.list[24].main.temp_min;
           weather.forecast.day4.max=res.data.list[24].main.temp_max;
-          weather.forecast.day4.day=res.data.list[24].dt;
+          weather.forecast.day4.day=res.data.list[24].main.temp;
           weather.forecast.day4.id=res.data.list[24].weather[0].id;
   
   
           weather.forecast.day5.min=res.data.list[32].main.temp_min;
           weather.forecast.day5.max=res.data.list[32].main.temp_max;
-          weather.forecast.day5.day=res.data.list[32].dt;
+          weather.forecast.day5.day=res.data.list[32].main.temp;
           weather.forecast.day5.id=res.data.list[32].weather[0].id;
           
           
