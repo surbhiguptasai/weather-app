@@ -1,20 +1,13 @@
 import axios from 'axios';
 var moment = require('moment-timezone');
-//import {fetchPrecipSuggestions, fetchCloudCoverSuggestions, fetchTempSuggestions} from './suggestion';
-
 /**
  * ACTION TYPES
  */
 const GET_DATE = 'GET_DATE'
 const GET_SUMMARY = 'GET_SUMMARY'
 const GET_ICON = 'GET_ICON'
-const GET_PRECIP = 'GET_PRECIP'
-const GET_PRECIP_TYPE = 'GET_PRECIP_TYPE'
 const GET_LO = 'GET_LO'
 const GET_HI = 'GET_HI'
-const GET_PRECIP_ID = 'GET_PRECIP_ID'
-const GET_CLOUD_ID = 'GET_CLOUD_ID'
-const GET_TEMP_ID = 'GET_TEMP_ID'
 const SET_DAY = 'SET_DAY'
 const SET_UNIT = 'SET_UNIT'
 const GET_FORCAST = 'GET_FORCAST'
@@ -75,14 +68,10 @@ const weather = {
 const getDate = date => ({type: GET_DATE, date})
 const getSummary = summary => ({type: GET_SUMMARY, summary})
 const getIcon = icon => ({type: GET_ICON, icon})
-// const getPrecip = precip => ({type: GET_PRECIP, precip})
-// const getPrecipType = preciptype => ({type: GET_PRECIP_TYPE, preciptype})
 const getLo = lo => ({type: GET_LO, lo})
 const getHi = hi => ({type: GET_HI, hi})
 const getForecast = forecast => ({type: GET_FORCAST, forecast})
-// const getPrecipId = id => ({type: GET_PRECIP_ID, id})
-// const getCloudId = id => ({type: GET_CLOUD_ID, id})
-// const getTempId = id => ({type: GET_TEMP_ID, id})
+
 export const setDay = day => ({type: SET_DAY, day})
 export const setUnit = unit => ({type: SET_UNIT, unit})
 
@@ -105,48 +94,7 @@ function retriveSkyCons(weatherDetails)
 /**
  * THUNK CREATORS
  */
-// function weatherIdCreator(weatherData) {
-//     function setPrecipId(precip, preciptype) {
-//         if (precip > 0.3) {
-//             if (preciptype === 'snow') {
-//                 return 2;
-//             } else {
-//                 return 1;
-//             }
-//         } else {
-//             return 0;
-//         }
-//     }
-//     function setCloudId(cloud) {
-//         return (cloud < 0.2) ? 3 : 0;
-//     }
-//     function setTempId(hi, lo) {
-//         let averageTemp = (hi + lo) / 2
-//         if (averageTemp < 30) {
-//             return 4;
-//         } else if (averageTemp < 40) {
-//             return 5;
-//         } else if (averageTemp < 50) {
-//             return 6;
-//         } else if (averageTemp < 60) {
-//             return 7;
-//         } else if (averageTemp < 70) {
-//             return 8;
-//         } else if (averageTemp < 80) {
-//             return 9;
-//         } else if (averageTemp < 90) {
-//             return 10;
-//         } else if (averageTemp >= 90) {
-//             return 11;
-//         }
-//     }
 
-//     return {
-//         precipId: setPrecipId(weatherData.precip, weatherData.preciptype),
-//         cloudId: setCloudId(weatherData.cloud),
-//         tempId: setTempId(weatherData.hi, weatherData.lo)
-//     }
-// }
 
 export const newDate = (date, tz) =>
   dispatch => {

@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 class Fivedays extends React.Component {
   render() {
-    var self = this
     const { format } = 'C'
     const { day1, day2, day3, day4, day5 } = this.props.weather.forecast
     let hr = new Date().getHours()
@@ -29,8 +28,6 @@ class Fivedays extends React.Component {
       'Nov',
       'Dec',
     ]
-    let day = d.getDay()
-    let num
     let weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     function daylist(day, num) {
       // console.log("date: ", day, "num: ", num, "date+num: ", day+num);
@@ -46,12 +43,9 @@ class Fivedays extends React.Component {
     var n3 = daylist(date, 2)
     var n4 = daylist(date, 3)
     var n5 = daylist(date, 4)
-    var n6 = daylist(date, 5)
-    var n7 = daylist(date, 6)
-    num = 0
+
     function dateHandler(date, num) {
       let result = ''
-      //  console.log(months[m]);
       switch (months[m]) {
         case 'Jan' || 'Mar' || 'May' || 'Jul' || 'Aug' || 'Oct' || 'Dec':
           if (date + num > 31) m++
@@ -62,6 +56,8 @@ class Fivedays extends React.Component {
         case 'Feb':
           if (date + num > 29) m++
           break
+        default:
+           break
       }
       let temp = date + num
       strDate = temp.toString()

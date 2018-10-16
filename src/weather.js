@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Skycon from './skycon'
 import { fetchWeather, setDay, setUnit } from './store'
 // import Search from './search'
 
@@ -11,8 +10,6 @@ function Weather(props) {
     longitude,
     date,
     summary,
-    icon,
-    precip,
     lo,
     hi,
     handleYesterDay,
@@ -20,9 +17,7 @@ function Weather(props) {
     day,
     unit,
     handleUnitChange,
-    preciptype,
   } = props
-  let formattedIcon = icon.replace(/-/g, '_').toUpperCase()
 
   return (
     <div className="weather">
