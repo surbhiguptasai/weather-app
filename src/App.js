@@ -2,20 +2,18 @@ import React from 'react'
 import Weather from './weather'
 import Form from './form'
 import Titles from './titles'
-import charts from'./charts'
+import charts from './charts'
 import Routes from './Routes'
-import {getCurrentLocation} from './store/currentLocation'
+import { getCurrentLocation } from './store/currentLocation'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-
-const Api_Key1 = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
+const Api_Key1 = process.env.REACT_APP_OPEN_WEATHER_API_KEY
 
 class App extends React.Component {
-  
- async componentDidMount() {
-    console.log("Loading Initial Data *****************")
-  await this.props.loadInitialData()
+  async componentDidMount() {
+    console.log('Loading Initial Data *****************')
+    await this.props.loadInitialData()
   }
   // state = {
   //   temperature: undefined,
@@ -53,23 +51,21 @@ class App extends React.Component {
   // }
 
   render() {
+    console.log('Api_Key1 is ***************' + Api_Key1)
+    console.log('Location is  ***************' + this.props.location)
 
-    console.log("Api_Key1 is ***************"+Api_Key1)
-    console.log("Location is  ***************"+this.props.location)
- 
     return (
       <div>
         <div className="wrapper">
-          <div className="main">
-            <div className="container">
-              <div className="row">
+          <div className="">
+            <div className="">
+              <div className="">
                 {/* <div className="col-xs-5 title-container">
                   <Titles />
                 </div> */}
-                <div className="form-container">
+                <div className="">
                   <Form loadWeather={this.getWeather} />
-                  <Weather
-                  />
+                  <Weather />
                   {/* <charts/> */}
                 </div>
               </div>
@@ -80,18 +76,18 @@ class App extends React.Component {
     )
   }
 }
-  const mapDispatch =   dispatch => {
+const mapDispatch = dispatch => {
   return {
-     loadInitialData() {
-       dispatch(getCurrentLocation())
-    }
+    loadInitialData() {
+      dispatch(getCurrentLocation())
+    },
   }
 }
 const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    location: state.currentLocation.location
+    location: state.currentLocation.location,
   }
 }
 
@@ -101,4 +97,3 @@ export default withRouter(
     mapDispatch
   )(App)
 )
-
