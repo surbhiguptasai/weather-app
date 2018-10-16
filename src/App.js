@@ -3,11 +3,20 @@ import Weather from './weather'
 import Form from './form'
 import Titles from './titles'
 import charts from'./charts'
+import Routes from './Routes'
+import {getCurrentLocation} from './store/currentLocation'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 
 const Api_Key1 = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 class App extends React.Component {
+  
+ async componentDidMount() {
+    console.log("Loading Initial Data *****************")
+  await this.props.loadInitialData()
+  }
   // state = {
   //   temperature: undefined,
   //   city: undefined,
@@ -46,6 +55,7 @@ class App extends React.Component {
   render() {
 
     console.log("Api_Key1 is ***************"+Api_Key1)
+    console.log("Location is  ***************"+this.props.location)
  
     return (
       <div>
@@ -60,7 +70,7 @@ class App extends React.Component {
                   <Form loadWeather={this.getWeather} />
                   <Weather
                   />
-                  <charts/>
+                  {/* <charts/> */}
                 </div>
               </div>
             </div>
@@ -70,4 +80,25 @@ class App extends React.Component {
     )
   }
 }
-export default App
+  const mapDispatch =   dispatch => {
+  return {
+     loadInitialData() {
+       dispatch(getCurrentLocation())
+    }
+  }
+}
+const mapState = state => {
+  return {
+    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
+    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
+    location: state.currentLocation.location
+  }
+}
+
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(App)
+)
+

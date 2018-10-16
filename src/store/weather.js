@@ -144,6 +144,30 @@ export const fetchWeather = (latitude, longitude, day) =>
     })
     .catch(err => console.log("Error Received"))
 
+    export const fetchWeatherBasedOnCity = (city) =>
+  dispatch =>
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
+    .then(res => {
+        console.log("got results"+JSON.stringify(res.data))
+        console.log("Summary is "+res.data.weather[0].description)
+        // let ids = weatherIdCreator(res.data);
+        let iconsky=retriveSkyCons(res.data.weather[0].main);
+        dispatch(newDate(res.data.dt, res.data.timezone))
+        dispatch(getSummary(res.data.weather[0].description))
+        dispatch(getIcon(iconsky))
+        // dispatch(getPrecip(res.data.precip))
+        // dispatch(getPrecipType(res.data.preciptype || 'rain'))
+        dispatch(getLo(res.data.main.temp_min))
+        dispatch(getHi(res.data.main.temp_max))
+        // dispatch(getPrecipId(ids.precipId))
+        // dispatch(getCloudId(ids.cloudId))
+        // dispatch(getTempId(ids.tempId))
+        // dispatch(fetchPrecipSuggestions(ids.precipId))
+        // dispatch(fetchCloudCoverSuggestions(ids.cloudId))
+        // dispatch(fetchTempSuggestions(ids.tempId))
+    })
+    .catch(err => console.log("Error Received"))
+
 /**
  * REDUCER
  */

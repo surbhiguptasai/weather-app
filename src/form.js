@@ -11,7 +11,7 @@ class Form extends React.Component
     e.preventDefault();
   
 		let  location = this.refs.googleAutoComplete.getLocation(); //set variable to location value
-    console.log("State is "+this.state.place)
+   
     
     // if (location.length > 0){ //check for input
 		// 	this.refs.googleAutoComplete.clearLocation(); //clear location value
@@ -20,6 +20,8 @@ class Form extends React.Component
 	}
   render()
   {
+    // console.log("Location is *** "+this.props.city)
+  
     return (
       <form onSubmit={this.onFormSubmit}>
         <div>
@@ -38,7 +40,10 @@ class Form extends React.Component
 }
 
 
-const mapState = state => ({   })
+const mapState = state => ({
+  currentLocation: state.currentLocation
+  // loc:state.currentLocation.location.loc  
+ })
 export default connect(
   mapState,
   null

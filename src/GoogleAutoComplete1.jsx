@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import  {fetchWeather} from './store/weather';
+import  {fetchWeather,fetchWeatherBasedOnCity} from './store/weather';
+import  {handleSubmitBasedonCity} from './store/weather';
 class GoogleAutocomplete1 extends React.Component
 {
  
@@ -11,7 +12,11 @@ class GoogleAutocomplete1 extends React.Component
 		// let autocomplete = new window.google.maps.places.Autocomplete(this.refs.location, {
 		//   types,
         // });
-        let autoComplete = new window.google.maps.places.Autocomplete(this.refs.location);
+        console.log("this.refs.location  is "+(this.refs.location.value))
+        let autoComplete = new window.google.maps.places.Autocomplete(this.refs.location)
+    
+
+        this.props.handleSubmitBasedonCity(this.refs.location.value)
        // console.log("this autocomplete "+JSON.stringify(autocomplete))
         autoComplete.addListener('place_changed', () => {
             let place = autoComplete.getPlace();
@@ -44,9 +49,17 @@ class GoogleAutocomplete1 extends React.Component
 	}
 
 	render() {
+    let city='New York,NY,USA';
+    if(this.props.currentLocation!=null)
+    {
+    city=this.props.currentLocation.location.city
+   
+      console.log("City is "+city)
+    }
+    // this.refs.location.value=city
 		return (
 			<div>
-				<input type="search" className="custom-search-class" placeholder="Search weather by city" ref="location"/>
+				<input type="search" className="custom-search-class" defaultValue={city} placeholder="Search weather by city" ref="location"/>
 			</div>
 		);
 	}
@@ -61,6 +74,10 @@ class GoogleAutocomplete1 extends React.Component
       handleSubmit(lat,lng) {
         console.log("Dispatching fetchwether detaile!"+lat)
           dispatch(fetchWeather(lat,lng,0));
+      },
+      handleSubmitBasedonCity(city) {
+        console.log("Dispatching fetchwether detaile!"+city)
+          dispatch(fetchWeatherBasedOnCity(city));
       }
     };
   };

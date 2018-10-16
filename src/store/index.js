@@ -4,6 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import weather from './weather'
 import user from './user'
+import currentLocation from './currentLocation'
 
 
 
@@ -17,7 +18,7 @@ const middleware = composeWithDevTools(
     })
   )
 )
-const reducer = combineReducers({user, weather})
+const reducer = combineReducers({user, weather,currentLocation})
 const store = createStore(reducer, middleware)
 
 

@@ -6,10 +6,7 @@ import history from './history'
 import store from './store'
 import './index.css'
 import App from './App'
-import {
-    BrowserRouter as Router,
-    Route
-  } from 'react-router-dom';
+import {Router} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker'
 
 
