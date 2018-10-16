@@ -243,3 +243,60 @@ button:disabled {
 .glyphicon-menu-down {
   margin-bottom: 20px;
 }
+.App-body {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  z-index: 1;
+  align-items: stretch;
+  background-color: rgba(128, 128, 128, 0.5);
+  height: 25%;
+  width: 100%;
+  bottom: 0;
+}
+.Day-item {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  cursor: pointer;
+  background-color: rgba(156, 148, 160, 0.5);
+  color: #7b8585;
+  transition: 0.3s;
+  margin-top: 1px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.Day-temp {
+  display: flex;
+  align-self: center;
+  margin: 10px;
+  font-size: 35px;
+  color: white;
+}
+.Day-text {
+  display: flex;
+  border-radius: 25px;
+  align-self: center;
+  margin: 30px;
+  font-size: 20px;
+  color: white;
+}
+#forecasticon1,
+#forecasticon2,
+#forecasticon3,
+#forecasticon4,
+#forecasticon5 {
+  color: white;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+}
+.Day-item:hover {
+  background-color: rgba(195, 190, 198, 0.7);
+}
+
+.Day-item.focused {
+  color: #fff;
+  background-color: rgba(195, 190, 198, 0.7);
+}

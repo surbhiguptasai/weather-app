@@ -4,6 +4,7 @@ import Form from './form'
 import Titles from './titles'
 import charts from './charts'
 import Routes from './Routes'
+import Fivedays from './fiveDaysForecast'
 import { getCurrentLocation } from './store/currentLocation'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -66,6 +67,7 @@ class App extends React.Component {
                 <div className="">
                   <Form loadWeather={this.getWeather} />
                   <Weather />
+                  <Fivedays />
                   {/* <charts/> */}
                 </div>
               </div>
