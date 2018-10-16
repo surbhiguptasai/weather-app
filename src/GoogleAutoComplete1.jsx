@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import  {fetchWeather,fetchWeatherBasedOnCity,fetchForecastWeather} from './store/weather';
+import  {fetchWeather,fetchWeatherBasedOnCity,fetchForecastWeather,fetchForecastWeatherBasedOnCity} from './store/weather';
 import  {handleSubmitBasedonCity} from './store/weather';
 class GoogleAutocomplete1 extends React.Component
 {
@@ -79,7 +79,7 @@ class GoogleAutocomplete1 extends React.Component
       handleSubmitBasedonCity(city) {
         console.log("Dispatching fetchwether detaile!"+city)
           dispatch(fetchWeatherBasedOnCity(city));
-         // dispatch(fetchForecastWeatherBasedOnCity(city));
+         dispatch(fetchForecastWeatherBasedOnCity(city));
       }
     };
   };
