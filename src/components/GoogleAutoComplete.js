@@ -16,7 +16,7 @@ class GoogleAutocomplete extends React.Component
 	}
 
 	render() {
-    let city='New York,NY,USA';
+    let city=process.env.REACT_APP_DEFAULT_CITY_LOCATION;
     if(this.props.currentLocation!=null)
     {
     city=this.props.currentLocation.location.city

@@ -5,8 +5,10 @@ import { OverlayTrigger, Popover } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 class Fivedays extends React.Component {
+ 
   render() {
-    const { format } = 'C'
+    console.log("unit is "+this.props.weather.unit)
+    const { format } = this.props.weather.unit
     const { day1, day2, day3, day4, day5 } = this.props.weather.forecast
     let hr = new Date().getHours()
     let tod = hr >= 17 ? 'night' : 'day'
@@ -114,10 +116,10 @@ class Fivedays extends React.Component {
     const popoverTop5 = (
       <Popover id="popover-positioned-top" title={d5}>
         <strong>
-          Average: {day5.day}°{format}
+          Average: {this.props.weather.unit === 'F' ? Math.round(day5.day) : Math.round((day5.day - 32) * (5 / 9))}°{format}
         </strong>
         <br />
-        High: {day5.max}°{format} Low: {day5.min}°{format}
+        High: {this.props.weather.unit === 'F' ? Math.round(day5.max) : Math.round((day5.max - 32) * (5 / 9))}°{format} Low: {this.props.weather.unit === 'F' ? Math.round(day5.min) : Math.round((day5.min - 32) * (5 / 9))}°{format}
       </Popover>
     )
 
@@ -137,7 +139,8 @@ class Fivedays extends React.Component {
             />
             <div className="Day-temp">
               {' '}
-              {day1.day}°{format}
+              {this.props.weather.unit === 'F' ? Math.round(day1.day) : Math.round((day1.day - 32) * (5 / 9))}
+              °{format}
             </div>
           </div>
         </OverlayTrigger>
@@ -155,7 +158,7 @@ class Fivedays extends React.Component {
             />
             <div className="Day-temp">
               {' '}
-              {day2.day}°{format}
+              {this.props.weather.unit === 'F' ? Math.round(day2.day) : Math.round((day2.day - 32) * (5 / 9))}°{format}
             </div>
           </div>
         </OverlayTrigger>
@@ -173,7 +176,7 @@ class Fivedays extends React.Component {
             />
             <div className="Day-temp">
               {' '}
-              {day3.day}°{format}
+              {this.props.weather.unit === 'F' ? Math.round(day3.day) : Math.round((day3.day - 32) * (5 / 9))}°{format}
             </div>
           </div>
         </OverlayTrigger>
@@ -191,7 +194,7 @@ class Fivedays extends React.Component {
             />
             <div className="Day-temp">
               {' '}
-              {day4.day}°{format}
+              {this.props.weather.unit === 'F' ? Math.round(day4.day) : Math.round((day4.day - 32) * (5 / 9))}°{format}
             </div>
           </div>
         </OverlayTrigger>
@@ -209,7 +212,7 @@ class Fivedays extends React.Component {
             />
             <div className="Day-temp">
               {' '}
-              {day5.day}°{format}
+              {this.props.weather.unit === 'F' ? Math.round(day5.day) : Math.round((day5.day - 32) * (5 / 9))}°{format}
             </div>
           </div>
         </OverlayTrigger>
