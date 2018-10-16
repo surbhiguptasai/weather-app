@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import history from './history'
 import store from './store'
 import './index.css'
-import App from './App'
+import App from './components/App'
 import {Router} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker'
 

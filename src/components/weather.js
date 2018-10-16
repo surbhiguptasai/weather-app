@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchWeather, setDay, setUnit } from './store'
+import { fetchWeather, setDay, setUnit } from '../store'
 // import Search from './search'
 
 function Weather(props) {

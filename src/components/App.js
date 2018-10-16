@@ -2,7 +2,7 @@ import React from 'react'
 import Weather from './weather'
 import Form from './form'
 import Fivedays from './fiveDaysForecast'
-import { getCurrentLocation } from './store/currentLocation'
+import { getCurrentLocation } from '../store/currentLocation'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 

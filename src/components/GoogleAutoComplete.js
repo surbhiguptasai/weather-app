@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import  {fetchWeather,fetchWeatherBasedOnCity,fetchForecastWeather,fetchForecastWeatherBasedOnCity} from './store/weather';
+import  {fetchWeather,fetchWeatherBasedOnCity,fetchForecastWeather,fetchForecastWeatherBasedOnCity} from '../store/weather';
 class GoogleAutocomplete extends React.Component
 {
     componentDidMount() {
