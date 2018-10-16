@@ -17,6 +17,7 @@ const GET_CLOUD_ID = 'GET_CLOUD_ID'
 const GET_TEMP_ID = 'GET_TEMP_ID'
 const SET_DAY = 'SET_DAY'
 const SET_UNIT = 'SET_UNIT'
+const GET_FORCAST = 'GET_FORCAST'
 
 /**
  * INITIAL STATE
@@ -33,7 +34,39 @@ const weather = {
     precipId: 0,
     cloudId: 0,
     tempId: 0,
-    unit: 'F'
+    unit: 'F',
+    forecast: {
+        day1: {
+           day: undefined,
+           min: undefined,
+           max: undefined,
+           id: undefined
+        },
+        day2: {
+           day: undefined,
+           min: undefined,
+           max: undefined,
+           id: undefined
+        },
+        day3: {
+           day: undefined,
+           min: undefined,
+           max: undefined,
+           id: undefined
+        },
+        day4: {
+           day: undefined,
+           min: undefined,
+           max: undefined,
+           id: undefined
+        },
+        day5: {
+           day: undefined,
+           min: undefined,
+           max: undefined,
+           id: undefined
+        }
+     }
 }
 
 /**
@@ -46,6 +79,7 @@ const getIcon = icon => ({type: GET_ICON, icon})
 // const getPrecipType = preciptype => ({type: GET_PRECIP_TYPE, preciptype})
 const getLo = lo => ({type: GET_LO, lo})
 const getHi = hi => ({type: GET_HI, hi})
+const getForecast = forecast => ({type: GET_FORCAST, forecast})
 // const getPrecipId = id => ({type: GET_PRECIP_ID, id})
 // const getCloudId = id => ({type: GET_CLOUD_ID, id})
 // const getTempId = id => ({type: GET_TEMP_ID, id})
@@ -168,6 +202,49 @@ export const fetchWeather = (latitude, longitude, day) =>
     })
     .catch(err => console.log("Error Received"))
 
+
+    export const fetchForecastWeather = (latitude, longitude, day) =>
+  dispatch =>
+    axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
+    .then(res => {
+        console.log("got results"+JSON.stringify(res.data))
+        weather.forecast.day1.min=res.data.list[0].main.temp_min;
+        weather.forecast.day1.max=res.data.list[0].main.temp_max;
+        weather.forecast.day1.day=res.data.list[0].dt;
+        weather.forecast.day1.id=res.data.list[0].weather[0].id;
+
+        weather.forecast.day2.min=res.data.list[8].main.temp_min;
+        weather.forecast.day2.max=res.data.list[8].main.temp_max;
+        weather.forecast.day2.day=res.data.list[8].dt;
+        weather.forecast.day2.id=res.data.list[8].weather[0].id;
+
+        weather.forecast.day3.min=res.data.list[16].main.temp_min;
+        weather.forecast.day3.max=res.data.list[16].main.temp_max;
+        weather.forecast.day3.day=res.data.list[16].dt;
+        weather.forecast.day3.id=res.data.list[16].weather[0].id;
+
+
+
+        weather.forecast.day4.min=res.data.list[24].main.temp_min;
+        weather.forecast.day4.max=res.data.list[24].main.temp_max;
+        weather.forecast.day4.day=res.data.list[24].dt;
+        weather.forecast.day4.id=res.data.list[24].weather[0].id;
+
+
+        weather.forecast.day5.min=res.data.list[32].main.temp_min;
+        weather.forecast.day5.max=res.data.list[32].main.temp_max;
+        weather.forecast.day5.day=res.data.list[32].dt;
+        weather.forecast.day5.id=res.data.list[32].weather[0].id;
+        
+        
+        dispatch(getForecast(weather))
+   
+    })
+    .catch(err => console.log("Error Received",err))
+
+
+    
+
 /**
  * REDUCER
  */
@@ -197,6 +274,9 @@ export default function (state = weather, action) {
         return Object.assign({}, state, {day: action.day})
     case SET_UNIT:
         return Object.assign({}, state, {unit: action.unit})
+
+    case GET_FORCAST:
+        return Object.assign({}, state, {weather: action.weather})
     default:
       return state
   }
