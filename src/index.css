@@ -351,3 +351,54 @@ button:disabled {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 }
+
+.stock {
+  /* inline block make the div adjust to content */
+
+  border: 0.2px solid #3e3e40;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.stock:hover {
+  background-color: #3e3e40;
+  color: white;
+}
+
+.stock:hover a {
+  color: white;
+}
+
+.stock-code {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.stock-description {
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.fa-times {
+  cursor: pointer;
+}
+
+.fa-times:hover {
+  transform: scale(1.2);
+}
+
+.add-city-container {
+  margin-top: 10px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.form-control, .btn {
+  font-family: Oswald;
+}
+
+.alert {
+  margin-top: 5px;
+}
