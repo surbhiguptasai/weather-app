@@ -300,3 +300,54 @@ button:disabled {
   color: #fff;
   background-color: rgba(195, 190, 198, 0.7);
 }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .weather {
+    width: 100% !important;
+  }
+  .custom-search-class {
+    margin-left: 3%;
+    margin-top: 20px;
+    width: 94%;
+  }
+  .App-body {
+    display: initial;
+    position: inherit;
+  }
+  .Day-item {
+    width: 100%;
+  }
+  .wrapper {
+    height: 200vh !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .weather {
+    width: 50% !important;
+  }
+  .custom-search-class {
+    margin-left: 20px !important;
+    margin-top: 20px;
+    width: 340px !important;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .custom-search-class {
+    margin-left: 30px !important;
+  }
+  .weather {
+    width: 40% !important;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
