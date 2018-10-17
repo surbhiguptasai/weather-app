@@ -5,6 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import weather from './weather'
 import user from './user'
 import currentLocation from './currentLocation'
+import historicalData from './historicalData'
+import cities from './cities'
+import date from './date'
 
 
 
@@ -18,7 +21,7 @@ const middleware = composeWithDevTools(
     })
   )
 )
-const reducer = combineReducers({user, weather,currentLocation})
+const reducer = combineReducers({user, weather,currentLocation,historicalData,cities,date})
 const store = createStore(reducer, middleware)
 
 

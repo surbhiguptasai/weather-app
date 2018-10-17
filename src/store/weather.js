@@ -106,9 +106,7 @@ export const fetchWeather = (latitude, longitude, day) =>
   dispatch =>
     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
     .then(res => {
-        console.log("got results"+JSON.stringify(res.data))
-        console.log("Summary is "+res.data.weather[0].description)
-        // let ids = weatherIdCreator(res.data);
+
         let iconsky=retriveSkyCons(res.data.weather[0].main);
         dispatch(newDate(res.data.dt, res.data.timezone))
         dispatch(getSummary(res.data.weather[0].description))
@@ -155,7 +153,7 @@ export const fetchWeather = (latitude, longitude, day) =>
   dispatch =>
     axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
     .then(res => {
-        console.log("got results"+JSON.stringify(res.data))
+       // console.log("got results"+JSON.stringify(res.data))
         weather.forecast.day1.min=res.data.list[0].main.temp_min;
         weather.forecast.day1.max=res.data.list[0].main.temp_max;
         weather.forecast.day1.day=res.data.list[0].main.temp;
@@ -194,7 +192,7 @@ export const fetchWeather = (latitude, longitude, day) =>
     dispatch =>
       axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
       .then(res => {
-          console.log("got results"+JSON.stringify(res.data))
+         // console.log("got results"+JSON.stringify(res.data))
           weather.forecast.day1.min=res.data.list[0].main.temp_min;
           weather.forecast.day1.max=res.data.list[0].main.temp_max;
           weather.forecast.day1.day=res.data.list[0].main.temp;
@@ -218,10 +216,10 @@ export const fetchWeather = (latitude, longitude, day) =>
           weather.forecast.day4.id=res.data.list[24].weather[0].id;
   
   
-          weather.forecast.day5.min=res.data.list[32].main.temp_min;
-          weather.forecast.day5.max=res.data.list[32].main.temp_max;
-          weather.forecast.day5.day=res.data.list[32].main.temp;
-          weather.forecast.day5.id=res.data.list[32].weather[0].id;
+          weather.forecast.day5.min=res.data.list[0].main.temp_min;
+          weather.forecast.day5.max=res.data.list[0].main.temp_max;
+          weather.forecast.day5.day=res.data.list[0].main.temp;
+          weather.forecast.day5.id=res.data.list[0].weather[0].id;
           
           
           dispatch(getForecast(weather))
@@ -230,6 +228,9 @@ export const fetchWeather = (latitude, longitude, day) =>
       .catch(err => console.log("Error Received",err))
 
 
+    
+
+      
     
 
 /**

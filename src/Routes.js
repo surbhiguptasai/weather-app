@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
-import App from './App'
-import {getCurrentLocation} from './store'
+import App from './components/App'
+import {getCurrentLocation,getHistoricalWeatherData} from './store'
 
 
 class Routes extends Component {
   componentDidMount() {
-    console.log("Loading Initial Data *****************")
   this.props.loadInitialData()
   }
 
@@ -28,6 +27,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(getCurrentLocation())
+      dispatch(getHistoricalWeatherData())
     }
   }
 }
