@@ -62,15 +62,6 @@ class App extends React.Component {
               <div className="">
                 <div className="col-xs-12 title-border">
                   <Titles />
-<<<<<<< HEAD
-                </div> */}
-                <div className="">
-                  {/* <Form  /> */}
-                  {/* <Weather />
-             
-                 <Fivedays /> */}
-                  <Chart/>
-=======
                 </div>
                 <div className="col-xs-12 col-md-5">
                   <Form loadWeather={this.getWeather} />
@@ -82,7 +73,6 @@ class App extends React.Component {
                   <AddCity />
                   <Cities />
                   <Chart />
->>>>>>> 5ec353fe48a7907cb59e2a52b9f16ef66a0ae512
                 </div>
               </div>
             </div>
