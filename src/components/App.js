@@ -68,10 +68,10 @@ class App extends React.Component {
                   <Titles />
                 </div> */}
                 <div className="">
-                  {/* <Form loadWeather={this.getWeather} />
-                  <Weather /> */}
+                  {/* <Form  /> */}
+                  {/* <Weather />
              
-                  {/* <Fivedays /> */}
+                 <Fivedays /> */}
                   <Chart/>
                 </div>
               </div>
