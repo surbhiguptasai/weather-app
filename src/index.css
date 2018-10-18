@@ -289,8 +289,8 @@ button:disabled {
   color: #7b8585;
   transition: 0.3s;
   margin-top: 1px;
-  margin-left: 1px;
-  margin-right: 1px;
+  margin-left: 0.5px;
+  margin-right: 0.5px;
 }
 .Day-temp {
   display: flex;
@@ -346,6 +346,12 @@ button:disabled {
   .wrapper {
     height: 200vh !important;
   }
+  .weather-location {
+    margin-right: 21%;
+  }
+  .weather-unit {
+    color: white !important;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -355,12 +361,18 @@ button:disabled {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .weather {
-    width: 50% !important;
+    width: 100% !important;
   }
   .custom-search-class {
     /* margin-left: 20px !important; */
     margin-top: 20px;
     /* width: 340px !important; */
+  }
+  .weather-location {
+    margin-right: 20%;
+  }
+  .weather-unit {
+    color: white;
   }
 }
 
@@ -372,10 +384,16 @@ button:disabled {
   .weather {
     width: 100% !important;
   }
+  .weather-unit {
+    color: black !important;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+  .weather-unit {
+    color: white !important;
+  }
 }
 
 .stock {
