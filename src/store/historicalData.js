@@ -18,7 +18,7 @@
  let count=0
   await cities.forEach(function (city) {
       
-     axios.get(`http://api.worldweatheronline.com/premium/v1/past-weather.ashx?q=${city}&key=${process.env.REACT_APP_WORLD_WEATHER_API_KEY}&format=json&tp=24&date=2018-09-01&enddate=2018-09-30`)
+     axios.get(`https://api.worldweatheronline.com/premium/v1/past-weather.ashx?q=${city}&key=${process.env.REACT_APP_WORLD_WEATHER_API_KEY}&format=json&tp=24&date=2018-09-01&enddate=2018-09-30`)
     .then(res => {
         count++;
         out.push(res.data)
