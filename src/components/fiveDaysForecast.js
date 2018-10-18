@@ -80,37 +80,41 @@ class Fivedays extends React.Component {
     const popoverTop = (
       <Popover id="popover-positioned-top" title={d1}>
         <strong>
-          Average: {day1.day}°{format}
+          Average: {this.props.weather.unit === 'F' ? Math.round(day1.day) : Math.round((day1.day - 32) * (5 / 9))}°{format}
         </strong>
         <br />
-        High: {day1.max}°{format} Low: {day1.min}°{format}
+        High: {this.props.weather.unit === 'F' ? Math.round(day1.max) : Math.round((day1.max - 32) * (5 / 9))}°{format} 
+        Low: {this.props.weather.unit === 'F' ? Math.round(day1.min) : Math.round((day1.min - 32) * (5 / 9))}°{format}
       </Popover>
     )
     const popoverTop2 = (
       <Popover id="popover-positioned-top" title={d2}>
         <strong>
-          Average: {day2.day}°{format}
+          Average: {this.props.weather.unit === 'F' ? Math.round(day2.day) : Math.round((day2.day - 32) * (5 / 9))}°{format}
         </strong>
         <br />
-        High: {day2.max}°{format} Low: {day2.min}°{format}
+        High: {this.props.weather.unit === 'F' ? Math.round(day2.max) : Math.round((day2.max - 32) * (5 / 9))}°{format} 
+        Low: {this.props.weather.unit === 'F' ? Math.round(day2.min) : Math.round((day2.min - 32) * (5 / 9))}°{format}
       </Popover>
     )
     const popoverTop3 = (
       <Popover id="popover-positioned-top" title={d3}>
         <strong>
-          Average: {day3.day}°{format}
+          Average: {this.props.weather.unit === 'F' ? Math.round(day3.day) : Math.round((day3.day - 32) * (5 / 9))}°{format}
         </strong>
         <br />
-        High: {day3.max}°{format} Low: {day3.min}°{format}
+        High: {this.props.weather.unit === 'F' ? Math.round(day3.max) : Math.round((day3.max - 32) * (5 / 9))}°{format} 
+        Low: {this.props.weather.unit === 'F' ? Math.round(day3.min) : Math.round((day3.min - 32) * (5 / 9))}°{format}
       </Popover>
     )
     const popoverTop4 = (
       <Popover id="popover-positioned-top" title={d4}>
         <strong>
-          Average: {day4.day}°{format}
+          Average: {this.props.weather.unit === 'F' ? Math.round(day4.day) : Math.round((day4.day - 32) * (5 / 9))}°{format}
         </strong>
         <br />
-        High: {day4.max}°{format} Low: {day4.min}°{format}
+        High: {this.props.weather.unit === 'F' ? Math.round(day4.max) : Math.round((day4.max - 32) * (5 / 9))}°{format} 
+        Low: {this.props.weather.unit === 'F' ? Math.round(day4.min) : Math.round((day4.min - 32) * (5 / 9))}°{format}
       </Popover>
     )
     const popoverTop5 = (
@@ -119,7 +123,8 @@ class Fivedays extends React.Component {
           Average: {this.props.weather.unit === 'F' ? Math.round(day5.day) : Math.round((day5.day - 32) * (5 / 9))}°{format}
         </strong>
         <br />
-        High: {this.props.weather.unit === 'F' ? Math.round(day5.max) : Math.round((day5.max - 32) * (5 / 9))}°{format} Low: {this.props.weather.unit === 'F' ? Math.round(day5.min) : Math.round((day5.min - 32) * (5 / 9))}°{format}
+        High: {this.props.weather.unit === 'F' ? Math.round(day5.max) : Math.round((day5.max - 32) * (5 / 9))}°{format} 
+        Low: {this.props.weather.unit === 'F' ? Math.round(day5.min) : Math.round((day5.min - 32) * (5 / 9))}°{format}
       </Popover>
     )
 

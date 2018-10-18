@@ -22,7 +22,15 @@ class Weather extends React.Component {
     handleTomorrow:'',
     day:'',
     unit:'',
-    handleUnitChange:'',
+    pressure:'',
+    humidity:'',
+    visbility:'',
+    windspeed:'',
+    sunrise:'',
+    sunset:'',
+
+
+    handleUnitChange:''
     }
 
     this.submitCity = this.submitCity.bind(this)

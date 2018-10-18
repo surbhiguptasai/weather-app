@@ -14,6 +14,13 @@ const SET_UNIT = 'SET_UNIT'
 const GET_FORCAST = 'GET_FORCAST'
 const GET_LOCATION1 = 'GET_LOCATION1'
 
+const GET_PRESSURE = 'GET_PRESSURE'
+const GET_HUMIDITY = 'GET_HUMIDITY'
+const GET_VISIBILITY = 'GET_VISIBILITY'
+const GET_WIND_SPEED = 'GET_WIND_SPEED'
+const GET_SUNRISE = 'GET_SUNRISE'
+const GET_SUNSET = 'GET_SUNSET'
+
 /**
  * INITIAL STATE
  */
@@ -30,6 +37,12 @@ const weather = {
   cloudId: 0,
   tempId: 0,
   unit: 'F',
+  pressure:'',
+  humidity:'',
+  visbility:'',
+  windspeed:'',
+  sunrise:'',
+  sunset:'',
   forecast: {
     day1: {
       day: undefined,
@@ -75,6 +88,14 @@ const getHi = hi => ({ type: GET_HI, hi })
 const getForecast = forecast => ({ type: GET_FORCAST, forecast })
 const getLocation = location => ({ type: GET_LOCATION1, location })
 
+
+const getPressure = pressure => ({ type: GET_PRESSURE, pressure })
+const getHumidity = humidity => ({ type: GET_HUMIDITY, humidity })
+const getVisibility = visibility => ({ type: GET_VISIBILITY, visibility })
+const getWinSpeed = windspeed => ({ type: GET_WIND_SPEED, windspeed })
+const getSunRise = sunrise => ({ type: GET_SUNRISE, sunrise })
+const getSunset = sunset => ({ type: GET_SUNSET, sunset })
+
 export const setDay = day => ({ type: SET_DAY, day })
 export const setUnit = unit => ({ type: SET_UNIT, unit })
 
@@ -118,6 +139,16 @@ export const fetchWeather = (latitude, longitude, day) => dispatch =>
       // dispatch(getPrecipId(ids.precipId))
       // dispatch(getCloudId(ids.cloudId))
       dispatch(getLocation(res.data.name))
+
+      dispatch(getPressure(res.data.main.pressure))
+      dispatch(getHumidity(res.data.main.humidity))
+      dispatch(getVisibility(res.data.visibility))
+      dispatch(getWinSpeed(res.data.wind.speed))
+      dispatch(getSunRise(res.data.sys.sunrise))
+      dispatch(getSunset(res.data.sys.sunset))
+
+
+
       // dispatch(fetchPrecipSuggestions(ids.precipId))
       // dispatch(fetchCloudCoverSuggestions(ids.cloudId))
       // dispatch(fetchTempSuggestions(ids.tempId))
@@ -150,6 +181,12 @@ export const fetchWeatherBasedOnCity = city => dispatch =>
       // dispatch(fetchPrecipSuggestions(ids.precipId))
       // dispatch(fetchCloudCoverSuggestions(ids.cloudId))
       // dispatch(fetchTempSuggestions(ids.tempId))
+      dispatch(getPressure(res.data.main.pressure))
+      dispatch(getHumidity(res.data.main.humidity))
+      dispatch(getVisibility(res.data.visibility))
+      dispatch(getWinSpeed(res.data.wind.speed))
+      dispatch(getSunRise(res.data.sys.sunrise))
+      dispatch(getSunset(res.data.sys.sunset))
     })
     .catch(err => console.log('Error Received'))
 
@@ -261,6 +298,22 @@ export default function(state = weather, action) {
 
     case GET_FORCAST:
       return Object.assign({}, state, { weather: action.weather })
+
+
+
+
+      case GET_PRESSURE:
+      return Object.assign({}, state, { pressure: action.pressure })
+      case GET_HUMIDITY:
+      return Object.assign({}, state, { humidity: action.humidity })
+      case GET_VISIBILITY:
+      return Object.assign({}, state, { visibility: action.visibility })
+      case GET_WIND_SPEED:
+      return Object.assign({}, state, { windspeed: action.windspeed })
+      case GET_SUNRISE:
+      return Object.assign({}, state, { sunrise: action.sunrise })
+      case GET_SUNSET:
+      return Object.assign({}, state, { sunset: action.sunset })
     default:
       return state
   }

@@ -17,8 +17,17 @@ class Chart extends Component {
       var tmp = [];
       let date = moment(chartData[j].date).valueOf()
 
-      
-      let price = parseInt(chartData[j].maxtempF)
+      console.log("this.props.unit is************************************"+this.props.unit)
+      let price=0;
+      if(this.props.unit=='C')
+      {
+         price = parseInt(chartData[j].maxtempC)  
+      }
+      else
+      {
+         price = parseInt(chartData[j].maxtempF)
+      }
+    
       tmp.push(date)
       tmp.push(price)
       out[j]=tmp
@@ -53,7 +62,8 @@ class Chart extends Component {
 
 const mapStateToProps = state => ({
     historicalData: state.historicalData,
-    cities: state.cities
+    cities: state.cities,
+    unit:state.weather.unit
 })
 
 export default connect(mapStateToProps, null)(Chart)
