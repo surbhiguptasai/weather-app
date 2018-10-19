@@ -369,7 +369,7 @@ button:disabled {
     /* width: 340px !important; */
   }
   .weather-location {
-    margin-right: 20%;
+    margin-right: 20% !important;
   }
   .weather-unit {
     color: white;
@@ -385,14 +385,14 @@ button:disabled {
     width: 100% !important;
   }
   .weather-unit {
-    color: black !important;
+    color: white !important;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .weather-unit {
-    color: white !important;
+    color: black !important;
   }
 }
 
