@@ -114,18 +114,18 @@ class Weather extends React.Component {
                 °{this.props.unit}
               </p>
             </div>
-            <div>
+            {/* <div>
               <p>
                 Pressure:
                 {this.props.pressure} hPa
               </p>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <p>
                 Sunrise:
                 {this.props.sunrise}
               </p>
-            </div>
+            </div> */}
           </div>
           {/* <a href="#suggestions">
           <span className="glyphicon glyphicon-menu-down" />
