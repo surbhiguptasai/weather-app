@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather, setDay, setUnit } from '../store'
-import {addCity,getCities} from '../store/cities'
+import { addCity, getCities } from '../store/cities'
 import { getHistoricalWeatherData } from '../store/historicalData'
 import { withRouter } from 'react-router-dom'
 // import Search from './search'
@@ -11,72 +11,70 @@ class Weather extends React.Component {
     super(props)
     this.state = {
       code: '',
-    location: '',
-    latitude: '',
-    longitude:'',
-    date:'',
-    summary:'',
-    lo:'',
-    hi:'',
-    handleYesterDay:'',
-    handleTomorrow:'',
-    day:'',
-    unit:'',
-    pressure:'',
-    humidity:'',
-    visbility:'',
-    windspeed:'',
-    sunrise:'',
-    sunset:'',
+      location: '',
+      latitude: '',
+      longitude: '',
+      date: '',
+      summary: '',
+      lo: '',
+      hi: '',
+      handleYesterDay: '',
+      handleTomorrow: '',
+      day: '',
+      unit: '',
+      pressure: '',
+      humidity: '',
+      visbility: '',
+      windspeed: '',
+      sunrise: '',
+      sunset: '',
 
-
-    handleUnitChange:''
+      handleUnitChange: '',
     }
 
     this.submitCity = this.submitCity.bind(this)
   }
-  
 
-  async submitCity(e)  {
+  async submitCity(e) {
     e.preventDefault()
     if (this.props.location !== '') {
-      this.setState({code: ''})
+      this.setState({ code: '' })
       await this.props.addCity(this.props.location)
       // this.props.getCities();
-      
+
       //await this.props.addCity("ISELIN,US")
-      console.log("Cities is "+this.props.cities)
-       this.props.getHistoricalWeatherData(this.props.cities)
+      console.log('Cities is ' + this.props.cities)
+      this.props.getHistoricalWeatherData(this.props.cities)
     }
   }
-  
-  render() {
-  return (
-    <div className="weather">
-      {/* <Search /> */}
-      <div className="weather-info">
-        <div className="weather-toggle">
-          <p className="weather-location">{this.props.location}</p>
-          <span className="input-group-btn">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={this.submitCity}
-            >
-              Add
-            </button>
-          </span>
-        </div>
 
-        {/* <button
+  render() {
+    return (
+      <div className="weather">
+        {/* <Search /> */}
+        <div className="weather-info">
+          <div className="weather-toggle">
+            <p className="weather-location">{this.props.location}</p>
+            <span className="input-group-btn">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.submitCity}
+              >
+                Add
+              </button>
+            </span>
+          </div>
+
+          {/* <button
             className="glyphicon glyphicon-menu-left"
             disabled={day <= 0}
             onClick={() => {
               handleYesterDay(latitude, longitude, day)
             }}
           /> */}
-        <h3 className="weather-date">{this.props.date}</h3>
-        {/* <button
+          <h3 className="weather-date">{this.props.date}</h3>
+          {/* <button
             className="glyphicon glyphicon-menu-right"
             disabled={day >= 7}
             onClick={() => {
@@ -84,42 +82,58 @@ class Weather extends React.Component {
             }}
           />*/}
 
-        <p className="weather-summary">
-          <h3>{this.props.summary}</h3>
-        </p>
-        {/* <div className="weather-icon">
+          <p className="weather-summary">
+            <h3>{this.props.summary}</h3>
+          </p>
+          {/* <div className="weather-icon">
           <Skycon icon={formattedIcon || 'CLOUDY'} />
         </div> */}
-        {/* <p className="weather-precip">{Math.round(precip * 100)}% chance of {preciptype}</p> */}
-        <div className="weather-temp">
-          <div className="weather-unit">
-            <form>
-              <select name="unit" onChange={this.props.handleUnitChange}>
-                <option value="F">F</option>
-                <option value="C">C</option>
-              </select>
-            </form>
+          {/* <p className="weather-precip">{Math.round(precip * 100)}% chance of {preciptype}</p> */}
+          <div className="weather-temp">
+            <div className="weather-unit">
+              <form>
+                <select name="unit" onChange={this.props.handleUnitChange}>
+                  <option value="F">F</option>
+                  <option value="C">C</option>
+                </select>
+              </form>
+            </div>
+            <div className="weather-temp-nums">
+              <p>
+                Low:{' '}
+                {this.props.unit === 'F'
+                  ? Math.round(this.props.lo)
+                  : Math.round((this.props.lo - 32) * (5 / 9))}
+                °{this.props.unit}{' '}
+              </p>
+              <p>
+                High:{' '}
+                {this.props.unit === 'F'
+                  ? Math.round(this.props.hi)
+                  : Math.round((this.props.hi - 32) * (5 / 9))}
+                °{this.props.unit}
+              </p>
+            </div>
+            <div>
+              <p>
+                Pressure:
+                {this.props.pressure} hPa
+              </p>
+            </div>
+            <div>
+              <p>
+                Sunrise:
+                {this.props.sunrise}
+              </p>
+            </div>
           </div>
-          <div className="weather-temp-nums">
-            <p>
-              Low:{' '}
-              {this.props.unit === 'F' ? Math.round(this.props.lo) : Math.round((this.props.lo - 32) * (5 / 9))}°
-              {this.props.unit}{' '}
-            </p>
-            <p>
-              High:{' '}
-              {this.props.unit === 'F' ? Math.round(this.props.hi) : Math.round((this.props.hi - 32) * (5 / 9))}°
-              {this.props.unit}
-            </p>
-          </div>
-        </div>
-        {/* <a href="#suggestions">
+          {/* <a href="#suggestions">
           <span className="glyphicon glyphicon-menu-down" />
         </a> */}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
 const mapStateToProps = state => ({
   date: state.weather.date,
@@ -132,10 +146,12 @@ const mapStateToProps = state => ({
   unit: state.weather.unit,
   preciptype: state.weather.preciptype,
   location: state.weather.location,
-  cities:state.cities
- })
- 
- const mapDispatch = dispatch => {
+  cities: state.cities,
+  pressure: state.weather.pressure,
+  sunrise: state.weather.sunrise,
+})
+
+const mapDispatch = dispatch => {
   return {
     handleYesterDay(latitude, longitude, day) {
       if (day > 0) {
@@ -153,11 +169,11 @@ const mapStateToProps = state => ({
       dispatch(setUnit(event.target.value))
     },
     addCity: city => dispatch(addCity(city)),
-    getHistoricalWeatherData: cities => dispatch(getHistoricalWeatherData(cities))
+    getHistoricalWeatherData: cities =>
+      dispatch(getHistoricalWeatherData(cities)),
   }
-   }
+}
 
-   
 export default withRouter(
   connect(
     mapStateToProps,

@@ -219,7 +219,7 @@ button:disabled {
 
 .glyphicon {
   margin: auto;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   border-radius: 100%;
   padding: 7px;
   cursor: pointer;
@@ -345,9 +345,10 @@ button:disabled {
   }
   .wrapper {
     height: 200vh !important;
+    /* width: fit-content; */
   }
   .weather-location {
-    margin-right: 21%;
+    margin-right: 21% !important;
   }
   .weather-unit {
     color: white !important;
@@ -372,7 +373,7 @@ button:disabled {
     margin-right: 20% !important;
   }
   .weather-unit {
-    color: white;
+    color: white !important;
   }
 }
 
