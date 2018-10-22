@@ -12,18 +12,15 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Chart from './charts'
 import { addCity, removeCity } from '../store/cities'
-import CityInfo from './cityinfo'
 import AddCity from './addCity'
 import Cities from './cities'
 import Titles from './titles'
+import  MapContainer   from './MapContainer';
+import  getLocation from '../store/weather'
 
 class App extends React.Component {
   constructor() {
     super()
-
-    // this.state = {
-    //   cities: citiesToMonitor
-    // }
     this.handleRemoveClick = this.handleRemoveClick.bind(this)
   }
 
@@ -38,8 +35,8 @@ class App extends React.Component {
     )
     let startDate = process.env.REACT_APP_DEFAULT_START_DATE
     let endDate = process.env.REACT_APP_DEFAULT_END_DATE
-    console.log('Start Date is ***********************' + startDate)
-    console.log('End Date is ***********************' + endDate)
+
+    //
     await this.props.addStartDate(startDate)
     await this.props.addEndDate(endDate)
     await this.props.addCity(citiesToMonitor)
@@ -47,7 +44,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('Rendering App ***************')
+
 
     if (
       this.props.cities !== undefined &&
@@ -65,7 +62,9 @@ class App extends React.Component {
                 </div>
                 <div className="col-xs-12 col-md-5">
                   <Form loadWeather={this.getWeather} />
+                  <MapContainer/>
                   <Weather />
+            
                   <Fivedays />
                 </div>
                 <div className="col-md-" />
@@ -94,6 +93,7 @@ const mapDispatch = dispatch => {
     removeCity: code => dispatch(removeCity(code)),
     addStartDate: code => dispatch(addStartDateForHistoricalData(code)),
     addEndDate: code => dispatch(addEndDateForHistoricalData(code)),
+    getLocation: city => dispatch(getLocation(city))
   }
 }
 const mapState = state => {

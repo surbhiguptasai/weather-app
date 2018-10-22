@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather, setDay, setUnit } from '../store'
-import { addCity, getCities } from '../store/cities'
+import { addCity } from '../store/cities'
+import  getLocation  from '../store/weather'
 import { getHistoricalWeatherData } from '../store/historicalData'
 import { withRouter } from 'react-router-dom'
 // import Search from './search'
@@ -82,9 +83,9 @@ class Weather extends React.Component {
             }}
           />*/}
 
-          <p className="weather-summary">
-            <h3>{this.props.summary}</h3>
-          </p>
+          {/* <p className="weather-summary"> */}
+            <h3 className="weather-summary" >{this.props.summary}</h3>
+          {/* </p> */}
           {/* <div className="weather-icon">
           <Skycon icon={formattedIcon || 'CLOUDY'} />
         </div> */}
@@ -169,8 +170,10 @@ const mapDispatch = dispatch => {
       dispatch(setUnit(event.target.value))
     },
     addCity: city => dispatch(addCity(city)),
+    getLocation: city => dispatch(getLocation(city)),
     getHistoricalWeatherData: cities =>
-      dispatch(getHistoricalWeatherData(cities)),
+    dispatch(getHistoricalWeatherData(cities)),
+      
   }
 }
 

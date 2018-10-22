@@ -1,5 +1,4 @@
 import axios from 'axios'
-const camelcase = require('camelcase')
 var moment = require('moment-timezone')
 /**
  * ACTION TYPES
@@ -21,10 +20,15 @@ const GET_WIND_SPEED = 'GET_WIND_SPEED'
 const GET_SUNRISE = 'GET_SUNRISE'
 const GET_SUNSET = 'GET_SUNSET'
 
+const SET_LATITUDE = 'SET_LATITUDE'
+const SET_LONGITUDE = 'SET_LONGITUDE'
+
 /**
  * INITIAL STATE
  */
 const weather = {
+  latitude:-34.397,
+  longitude:150.644,
   day: 0,
   date: '',
   summary: '',
@@ -96,8 +100,14 @@ const getWinSpeed = windspeed => ({ type: GET_WIND_SPEED, windspeed })
 const getSunRise = sunrise => ({ type: GET_SUNRISE, sunrise })
 const getSunset = sunset => ({ type: GET_SUNSET, sunset })
 
+
 export const setDay = day => ({ type: SET_DAY, day })
 export const setUnit = unit => ({ type: SET_UNIT, unit })
+
+export const setLatitude = lat => ({ type: SET_LATITUDE, lat })
+export const setLongitude = lng => ({ type: SET_LONGITUDE, lng })
+
+
 
 function retriveSkyCons(weatherDetails) {
   let icon = ''
@@ -139,6 +149,7 @@ export const fetchWeather = (latitude, longitude, day) => dispatch =>
       // dispatch(getPrecipId(ids.precipId))
       // dispatch(getCloudId(ids.cloudId))
       dispatch(getLocation(res.data.name))
+    
 
       dispatch(getPressure(res.data.main.pressure))
       dispatch(getHumidity(res.data.main.humidity))
@@ -147,13 +158,8 @@ export const fetchWeather = (latitude, longitude, day) => dispatch =>
       dispatch(getSunRise(res.data.sys.sunrise))
       dispatch(getSunset(res.data.sys.sunset))
 
-
-
-      // dispatch(fetchPrecipSuggestions(ids.precipId))
-      // dispatch(fetchCloudCoverSuggestions(ids.cloudId))
-      // dispatch(fetchTempSuggestions(ids.tempId))
     })
-    .catch(err => console.log('Error Received'))
+    .catch(err => console.log('Error Received'+err))
 
 export const fetchWeatherBasedOnCity = city => dispatch =>
   axios
@@ -163,8 +169,7 @@ export const fetchWeatherBasedOnCity = city => dispatch =>
       }`
     )
     .then(res => {
-      console.log('got results' + JSON.stringify(res.data))
-      console.log('Summary is ' + res.data.weather[0].description)
+
       // let ids = weatherIdCreator(res.data);
       let iconsky = retriveSkyCons(res.data.weather[0].main)
       dispatch(newDate(res.data.dt, res.data.timezone))
@@ -175,12 +180,7 @@ export const fetchWeatherBasedOnCity = city => dispatch =>
       dispatch(getLo(res.data.main.temp_min))
       dispatch(getHi(res.data.main.temp_max))
       dispatch(getLocation(res.data.name))
-      // dispatch(getPrecipId(ids.precipId))
-      // dispatch(getCloudId(ids.cloudId))
-      // dispatch(getTempId(ids.tempId))
-      // dispatch(fetchPrecipSuggestions(ids.precipId))
-      // dispatch(fetchCloudCoverSuggestions(ids.cloudId))
-      // dispatch(fetchTempSuggestions(ids.tempId))
+
       dispatch(getPressure(res.data.main.pressure))
       dispatch(getHumidity(res.data.main.humidity))
       dispatch(getVisibility(res.data.visibility))
@@ -188,7 +188,7 @@ export const fetchWeatherBasedOnCity = city => dispatch =>
       dispatch(getSunRise(res.data.sys.sunrise))
       dispatch(getSunset(res.data.sys.sunset))
     })
-    .catch(err => console.log('Error Received'))
+    .catch(err => console.log('Error Received'+err))
 
 export const fetchForecastWeather = (latitude, longitude, day) => dispatch =>
   axios
@@ -270,6 +270,7 @@ export const fetchForecastWeatherBasedOnCity = city => dispatch =>
  * REDUCER
  */
 export default function(state = weather, action) {
+
   switch (action.type) {
     case GET_DATE:
       return Object.assign({}, state, { date: action.date })
@@ -277,18 +278,12 @@ export default function(state = weather, action) {
       return Object.assign({}, state, { summary: action.summary.toUpperCase() })
     case GET_ICON:
       return Object.assign({}, state, { icon: action.icon })
-    // case GET_PRECIP:
-    //     return Object.assign({}, state, {precip: action.precip})
-    // case GET_PRECIP_TYPE:
-    //     return Object.assign({}, state, {preciptype: action.preciptype})
+  
     case GET_LO:
       return Object.assign({}, state, { lo: action.lo })
     case GET_HI:
       return Object.assign({}, state, { hi: action.hi })
-    // case GET_PRECIP_ID:
-    //     return Object.assign({}, state, {precipId: action.id})
-    // case GET_CLOUD_ID:
-    //     return Object.assign({}, state, {cloudId: action.id})
+
     case GET_LOCATION1:
       return Object.assign({}, state, { location: action.location })
     case SET_DAY:
@@ -314,6 +309,13 @@ export default function(state = weather, action) {
       return Object.assign({}, state, { sunrise: action.sunrise })
       case GET_SUNSET:
       return Object.assign({}, state, { sunset: action.sunset })
+
+      case SET_LATITUDE:
+      return Object.assign({}, state, { latitude: action.lat })
+
+      case SET_LONGITUDE:
+      return Object.assign({}, state, { longitude: action.lng })
+
     default:
       return state
   }

@@ -12,14 +12,13 @@ class Chart extends Component {
 
   getData(chartData) {
     var out = []
-    console.log("length is "+chartData.length)
     for (let j = 0; j < chartData.length; j++) {
       var tmp = [];
       let date = moment(chartData[j].date).valueOf()
 
-      console.log("this.props.unit is************************************"+this.props.unit)
+  
       let price=0;
-      if(this.props.unit=='C')
+      if(this.props.unit==='C')
       {
          price = parseInt(chartData[j].maxtempC)  
       }
@@ -40,10 +39,8 @@ class Chart extends Component {
     
         let chartArr = this.props.historicalData
 
-      
         const series = chartArr.map(chart1 => {
           let out = this.getData(chart1.data.weather)
-          console.log("Inside Charts data is "+out+"city is "+JSON.stringify(chart1.data.request[0].query))
           
           return {
             data: out,

@@ -16,7 +16,6 @@ export const getCurrentLocation = () =>
   async dispatch =>
    await axios.get(`http://ipinfo.io`)
     .then(res => {
-        console.log("Got Current Location"+JSON.stringify(res.data))
 
         dispatch(getLocation(res.data))
    

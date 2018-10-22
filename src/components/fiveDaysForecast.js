@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 class Fivedays extends React.Component {
  
   render() {
-    console.log("unit is "+this.props.weather.unit)
     const { format } = this.props.weather.unit
     const { day1, day2, day3, day4, day5 } = this.props.weather.forecast
     let hr = new Date().getHours()

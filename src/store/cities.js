@@ -36,12 +36,12 @@ const cities = (state = cities, action) => {
       }
     case REMOVE_CITY:
       let updatedStocks = state
-      if (updatedStocks.length == 1) {
+      if (updatedStocks.length === 1) {
         updatedStocks = []
         return updatedStocks
       } else {
         updatedStocks = updatedStocks.filter(function(item) {
-          return item.search(action.code) == -1
+          return item.search(action.code) === -1
         })
       }
       return updatedStocks

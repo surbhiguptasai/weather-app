@@ -1,15 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import  {fetchWeather,fetchWeatherBasedOnCity,fetchForecastWeather,fetchForecastWeatherBasedOnCity} from '../store/weather';
+import Geocode from "react-geocode";
+import  {fetchWeather,fetchWeatherBasedOnCity,fetchForecastWeather,fetchForecastWeatherBasedOnCity, setLatitude, setLongitude} from '../store/weather';
 class GoogleAutocomplete extends React.Component
 {
-    componentDidMount() {
+    async componentDidMount() {
         let autoComplete = new window.google.maps.places.Autocomplete(this.refs.location)
         this.props.handleSubmitBasedonCity(this.refs.location.value)
+        Geocode.setApiKey("AIzaSyB4Aw7HKY9FKq_-J6_3FY13SNUBfCMsaaM");
+       await Geocode.fromAddress(process.env.REACT_APP_DEFAULT_CITY_LOCATION).then(
+          response => {
+           
+           let latitude = response.results[0].geometry.location.lat;
+           let longitude=response.results[0].geometry.location.lng
+           this.props.setLatitudeAndLongitude(latitude,longitude);
+
+          },
+          error => {
+            console.error("Errr is ********************"+error);
+          }
+        );
+
+
         autoComplete.addListener('place_changed', () => {
             let place = autoComplete.getPlace();
             let lat = place.geometry.location.lat();
             let lng = place.geometry.location.lng();
+        
             this.props.handleSubmit(lat,lng)
     
           });
@@ -17,10 +34,9 @@ class GoogleAutocomplete extends React.Component
 
 	render() {
     let city=process.env.REACT_APP_DEFAULT_CITY_LOCATION;
-    if(this.props.currentLocation!=null)
+    if(this.props.location!=null)
     {
-    city=this.props.currentLocation.location.city
-    console.log("City is "+city)
+    city=this.props.location
     }
 		return (
 			<div>
@@ -29,20 +45,27 @@ class GoogleAutocomplete extends React.Component
 		);
 	}
 }
-  const mapState = state => ({  })
+  const mapState = state => ({ location: state.weather.location })
   const mapDispatchToProps = function(dispatch) {
       
     return {
       handleSubmit(lat,lng) {
-        console.log("Dispatching fetchwether detaile!"+lat)
           dispatch(fetchWeather(lat,lng,0));
+          dispatch(setLatitude(lat))
+          dispatch(setLongitude(lng))
           dispatch(fetchForecastWeather(lat,lng,0));
       },
       handleSubmitBasedonCity(city) {
-        console.log("Dispatching fetchwether detaile!"+city)
           dispatch(fetchWeatherBasedOnCity(city));
          dispatch(fetchForecastWeatherBasedOnCity(city));
+      },
+      setLatitudeAndLongitude(lat,lng)
+      {
+        dispatch(setLatitude(lat))
+        dispatch(setLongitude(lng))
+
       }
+
     };
   };
   export default connect(
