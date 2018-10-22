@@ -61,14 +61,15 @@ class App extends React.Component {
                   <Titles />
                 </div>
                 <div className="col-xs-12 col-md-5">
-                  <Form loadWeather={this.getWeather} />
+                  <Form />
                   <MapContainer/>
-                  <Weather />
-            
-                  <Fivedays />
                 </div>
-                <div className="col-md-" />
+                {/* <div className="col-md-" /> */}
                 <div className=" col-xs-12 col-md-7">
+                <Weather />
+                <Fivedays />
+                </div>
+                <div className=" col-xs-12 col-md-12">
                   <AddCity />
                   <Cities />
                   <Chart />

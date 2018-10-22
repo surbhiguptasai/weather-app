@@ -4,7 +4,7 @@ class CityInfo extends Component {
   render() {
     let city = this.props.city
     return (
-      <div className="stock col-sm-4 w3-card w3-light-grey">
+      <div className="stock col-sm-4 w3-card w3-black">
         <p className="stock-code">
           {/* <span>{city}</span> */}
           <span className="float-sm-right" onClick={this.props.onClick}>

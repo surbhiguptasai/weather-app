@@ -42,6 +42,7 @@ body {
   /* width: 352px; */
   width: 100%;
   height: 43px;
+  margin-top: 4%;
   padding: 10px 18px;
 }
 .title-container {
@@ -55,7 +56,7 @@ body {
   color: rgb(11, 3, 82);
 }
 .title-center {
-  background-color: #5ba3eb;
+  background-color: #286090;
 }
 .title-container__title {
   font-size: 35px;
@@ -123,7 +124,10 @@ button {
   color: #fff;
   font-weight: 100;
 }
-
+.btn{
+  margin-bottom: 5px !important ;
+  padding: 0 !important;
+}
 button:active {
   outline: none;
 }
@@ -172,23 +176,25 @@ button:active {
 }
 .weather {
   padding-top: 3%;
-  padding-bottom: 3%;
+  /* padding-bottom: 3%; */
   width: 33%;
   color: white;
   text-align: center;
 }
 
 .weather-info {
-  background-color: #333;
-
-  border-bottom: 5px solid #0f0807;
-  box-shadow: rgba(105, 105, 105, 0.23) 4px 4px 17px;
+  /* background-color: rgb(51, 51, 51); */
+background-image: url("./images/clouds.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+  /* border-bottom: 5px solid #0f0807;
+  box-shadow: rgba(105, 105, 105, 0.23) 4px 4px 17px; */
 }
 
 .weather-location {
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 30px;
+  /* padding-left: 30px; */
   font-weight: bold;
   font-size: 30px;
   margin-right: 40%;
@@ -199,8 +205,8 @@ button:active {
   align-items: center;
   /* padding-bottom: 12px;
   padding-top: 16px; */
-
-  background-color: #44a1ad;
+text-align: center;
+  /* background-color: #44a1ad; */
   position: relative;
   margin: auto;
   color: white;
@@ -259,12 +265,13 @@ button:disabled {
 }
 .weather-temp-nums {
   display: flex;
-  padding: 0px 19px;
+  /* padding: 0px 19px; */
   font-size: 20px;
-  width: 90%;
+  width: 75%;    text-align: left;
 }
-.weather-temp-nums p {
-  margin: 20px;
+
+.weather-temp-nums div {
+ margin-right: 30px
 }
 .glyphicon-menu-down {
   margin-bottom: 20px;
@@ -370,7 +377,7 @@ button:disabled {
     /* width: 340px !important; */
   }
   .weather-location {
-    margin-right: 20% !important;
+    /* margin-right: 20% !important; */
   }
   .weather-unit {
     color: white !important;

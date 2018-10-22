@@ -124,7 +124,9 @@ function retriveSkyCons(weatherDetails) {
 /**
  * THUNK CREATORS
  */
-
+const getTime1 = dateTime => {
+  return moment.unix(dateTime).format('h:mm:ss A')// 10:30 am
+  }
 export const newDate = (date, tz) => dispatch => {
   var now = moment.tz(date * 1000, tz).format('MMMM Do YYYY')
   dispatch(getDate(now))
@@ -155,9 +157,10 @@ export const fetchWeather = (latitude, longitude, day) => dispatch =>
       dispatch(getHumidity(res.data.main.humidity))
       dispatch(getVisibility(res.data.visibility))
       dispatch(getWinSpeed(res.data.wind.speed))
-      dispatch(getSunRise(res.data.sys.sunrise))
-      dispatch(getSunset(res.data.sys.sunset))
-
+      // dispatch(getSunRise(getTime(res.data.sys.sunrise)))
+      // dispatch(getSunset(getTime(res.data.sys.sunset)))
+ dispatch(getSunRise((res.data.sys.sunrise)))
+      dispatch(getSunset((res.data.sys.sunset)))
     })
     .catch(err => console.log('Error Received'+err))
 
@@ -185,8 +188,8 @@ export const fetchWeatherBasedOnCity = city => dispatch =>
       dispatch(getHumidity(res.data.main.humidity))
       dispatch(getVisibility(res.data.visibility))
       dispatch(getWinSpeed(res.data.wind.speed))
-      dispatch(getSunRise(res.data.sys.sunrise))
-      dispatch(getSunset(res.data.sys.sunset))
+      dispatch(getSunRise(getTime1(res.data.sys.sunrise)))
+      dispatch(getSunset(getTime1(res.data.sys.sunset)))
     })
     .catch(err => console.log('Error Received'+err))
 
