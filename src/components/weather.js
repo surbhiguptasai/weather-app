@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather, setDay, setUnit } from '../store'
 import { addCity } from '../store/cities'
-import  getLocation  from '../store/weather'
+import getLocation from '../store/weather'
 import { getHistoricalWeatherData } from '../store/historicalData'
 import { withRouter } from 'react-router-dom'
 // import Search from './search'
@@ -29,7 +29,6 @@ class Weather extends React.Component {
       windspeed: '',
       sunrise: '',
       sunset: '',
-      
 
       handleUnitChange: '',
     }
@@ -56,16 +55,19 @@ class Weather extends React.Component {
         {/* <Search /> */}
         <div className="weather-info">
           <div className="weather-toggle">
-
-            <div className="col-md-5 weather-location">{this.props.location}</div>
+            <div className="col-md-5 weather-location">
+              {this.props.location}
+            </div>
             {/* <span className="input-group-btn"> */}
-              <div className="col-md-2"><button
+            <div className="col-md-2">
+              <button
                 type="button"
                 className="btn btn-primary"
                 onClick={this.submitCity}
               >
                 Add Location
-              </button></div>
+              </button>
+            </div>
             {/* </span> */}
           </div>
 
@@ -77,8 +79,8 @@ class Weather extends React.Component {
             }}
           /> */}
           <div>
-          <h3 className="weather-date">{this.props.date}</h3>
-          {/* <button
+            <h3 className="weather-date">{this.props.date}</h3>
+            {/* <button
             className="glyphicon glyphicon-menu-right"
             disabled={day >= 7}
             onClick={() => {
@@ -86,9 +88,9 @@ class Weather extends React.Component {
             }}
           />*/}
 
-          {/* <p className="weather-summary"> */}
-            <h3 className="weather-summary" >{this.props.summary}</h3>
-            </div>
+            {/* <p className="weather-summary"> */}
+            <h3 className="weather-summary">{this.props.summary}</h3>
+          </div>
           {/* </p> */}
           {/* <div className="weather-icon">
           <Skycon icon={formattedIcon || 'CLOUDY'} />
@@ -104,41 +106,28 @@ class Weather extends React.Component {
               </form>
             </div>
             <div className="weather-temp-nums">
-            <div>
-              <p>
-                Low:{' '}
-                {this.props.unit === 'F'
-                  ? Math.round(this.props.lo)
-                  : Math.round((this.props.lo - 32) * (5 / 9))}
-                °{this.props.unit}{' '}
-              </p>
-              <p>
-                High:{' '}
-                {this.props.unit === 'F'
-                  ? Math.round(this.props.hi)
-                  : Math.round((this.props.hi - 32) * (5 / 9))}
-                °{this.props.unit}
-              </p>
-              <p>
-                Pressure:{' '}
-                {this.props.pressure} hPa
-              </p>
-           
-            </div>
-            <div >
-            <p>
-                Sunrise:{' '} 
-                {this.props.sunrise}
-              </p>
-              <p>
-                Sunset:{' '} 
-                {this.props.sunset}
-              </p>
-              <p>
-                Wind Speed:{' '} 
-                {this.props.windspeed} meter/sec
-              </p>
-            </div>
+              <div>
+                <p>
+                  Low:{' '}
+                  {this.props.unit === 'F'
+                    ? Math.round(this.props.lo)
+                    : Math.round((this.props.lo - 32) * (5 / 9))}
+                  °{this.props.unit}{' '}
+                </p>
+                <p>
+                  High:{' '}
+                  {this.props.unit === 'F'
+                    ? Math.round(this.props.hi)
+                    : Math.round((this.props.hi - 32) * (5 / 9))}
+                  °{this.props.unit}
+                </p>
+                <p>Pressure: {this.props.pressure} hPa</p>
+              </div>
+              <div>
+                <p>Sunrise: {this.props.sunrise}</p>
+                <p>Sunset: {this.props.sunset}</p>
+                <p>Wind Speed: {this.props.windspeed} meter/sec</p>
+              </div>
             </div>
             {/* <div>
               <p>
@@ -169,9 +158,9 @@ const mapStateToProps = state => ({
   cities: state.cities,
   pressure: state.weather.pressure,
   sunrise: state.weather.sunrise,
-  sunset:state.weather.sunset,
-  visibility:state.weather.visibility,
-  windspeed:state.weather.windspeed
+  sunset: state.weather.sunset,
+  visibility: state.weather.visibility,
+  windspeed: state.weather.windspeed,
 })
 
 const mapDispatch = dispatch => {
@@ -194,8 +183,7 @@ const mapDispatch = dispatch => {
     addCity: city => dispatch(addCity(city)),
     getLocation: city => dispatch(getLocation(city)),
     getHistoricalWeatherData: cities =>
-    dispatch(getHistoricalWeatherData(cities)),
-      
+      dispatch(getHistoricalWeatherData(cities)),
   }
 }
 
